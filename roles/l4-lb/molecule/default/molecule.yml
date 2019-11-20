@@ -1,0 +1,23 @@
+---
+dependency:
+  name: galaxy
+  enabled: false
+driver:
+  name: docker
+lint:
+  name: yamllint
+  options:
+    config-file: ../../molecule/yamllint
+platforms:
+  - name: instance
+    image: debian:buster
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+    options:
+      x: [701]
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
