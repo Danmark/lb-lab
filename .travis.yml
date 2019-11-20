@@ -3,6 +3,12 @@ language: python
 python:
   - "2.7"
   - "3.6"
+env:
+  - ROLE=dns-server
+  - ROLE=l4-lb
+  - ROLE=l7-lb
+  - ROLE=router
+  - ROLE=webserver
 services:
   - docker
 install:
@@ -10,4 +16,5 @@ install:
 script:
   - molecule --version
   - ansible --version
-  - test/test.sh
+  - cd roles/$ROLE
+  - molecule test
